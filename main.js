@@ -23,13 +23,18 @@ canvas.height = 0;
 canvas2.width = 0;
 canvas2.height = 0;
 
-CANVAS_HEIGHT = Math.min(window.innerHeight, window.innerWidth) - 20;
-CANVAS_WIDTH = Math.min(window.innerHeight, window.innerWidth) - 20;
+// CANVAS_HEIGHT = Math.min(window.innerHeight, window.innerWidth) - 20;
+// CANVAS_WIDTH = Math.min(window.innerHeight, window.innerWidth) - 20;
+
+let imageData, pinLocations, lines;
 
 let statusText = document.getElementById("status");
 
 document.getElementById("generate").addEventListener("click", () => {
   if (IMAGE_NAME) {
+    pinLocations = [];
+    imageData = [];
+    lines = [];
     img.src = IMAGE_NAME;
 
     statusText.innerText = "Loading image....";
@@ -108,8 +113,6 @@ document.getElementById("see_steps").addEventListener("input", (e) => {
   SEE_ANIMATION = e.target.checked;
 });
 
-let imageData, pinLocations, lines, artData;
-
 function contrastImage(imgData, contrast) {
   //input range [-100..100]
   var d = imgData.data;
@@ -124,16 +127,16 @@ function contrastImage(imgData, contrast) {
   return imgData;
 }
 
-const cropImage = (ctx) => {
-  ctx.beginPath();
-  ctx.arc(
+const cropImage = (ctxz) => {
+  ctxz.beginPath();
+  ctxz.arc(
     CANVAS_WIDTH / 2,
     CANVAS_HEIGHT / 2,
     CANVAS_WIDTH / 2,
     0,
     2 * Math.PI
   );
-  ctx.clip();
+  ctxz.clip();
 
   let selectedHeight = img.height,
     selectedWidth = img.width;
@@ -151,7 +154,7 @@ const cropImage = (ctx) => {
     xOffset = Math.floor((img.width - img.height) / 2);
   }
 
-  ctx.drawImage(
+  ctxz.drawImage(
     img,
     xOffset,
     yOffset,
@@ -223,6 +226,7 @@ const generateLines = () => {
       lines[i][j] = bresenham(x1, y1, x2, y2);
     }
   }
+  // console.log(lines);
   return lines;
 };
 const bresenham = (x0, y0, x1, y1) => {

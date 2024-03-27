@@ -31,6 +31,12 @@
       align-items: center;
       gap: 20px;
     }
+    .canvases {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
   </style>
   <body>
     <h1>String art generator</h1>
@@ -64,11 +70,13 @@
     </p>
     <button id="generate">Genarate</button>
     <p id="status"></p>
-    <div>
-      <canvas id="canvas"></canvas>
-    </div>
-    <div>
-      <canvas id="canvas2"></canvas>
+    <div class="canvases">
+      <div>
+        <canvas id="canvas"></canvas>
+      </div>
+      <div>
+        <canvas id="canvas2"></canvas>
+      </div>
     </div>
   </body>
   <script src="main.js"></script>

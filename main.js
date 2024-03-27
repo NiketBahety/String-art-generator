@@ -14,7 +14,7 @@ let PINS_BUFFER = 0;
 let DRAW_INTERVAL = 100;
 let MIN_PIN_GAP = 0;
 let LINE_WEIGHT = 0.1;
-let LIGHTENING_FACTOR = 1.4;
+let LIGHTENING_FACTOR = 1.3 + LINE_WEIGHT;
 let IMAGE_NAME = "";
 let SEE_ANIMATION = true;
 
@@ -97,7 +97,7 @@ document.getElementById("number_of_lines").addEventListener("input", (e) => {
 
 document.getElementById("line_weight").addEventListener("input", (e) => {
   LINE_WEIGHT = e.target.value;
-  LIGHTENING_FACTOR = 1.4;
+  LIGHTENING_FACTOR = 1.3 + parseFloat(LINE_WEIGHT);
 });
 
 document.getElementById("number_of_pins").addEventListener("input", (e) => {
@@ -357,6 +357,7 @@ const getError = (line) => {
   for (let i = 0; i < line.length; i++) {
     let index = (line[i][1] * CANVAS_WIDTH + line[i][0]) * 4;
     totalError += imageData.data[index];
+    // totalError += imageData.data[index] * (255 - line[i][2]);
     // temp.push(imageData.data[index]);
   }
   // console.log(temp);

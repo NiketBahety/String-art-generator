@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>String art generator</title>
+  </head>
+  <style>
+    * {
+      scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-size: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px 10px;
+    }
+    input {
+      font-size: 16px;
+    }
+    button,
+    input {
+      padding: 10px 20px;
+    }
+    .inputs {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+  </style>
+  <body>
+    <h1>String art generator</h1>
+    <div class="inputs">
+      <label for="number_of_lines">Number of lines:</label>
+      <input type="numeric" id="number_of_lines" value="6000" />
+    </div>
+    <div class="inputs">
+      <label for="line_weight">Line thickness:</label>
+      <input type="numeric" id="line_weight" value="0.2" />
+    </div>
+    <div class="inputs">
+      <label for="number_of_pins">Number of pins:</label>
+      <input type="numeric" id="number_of_pins" value="288" />
+    </div>
+    <div class="inputs">
+      <label for="see_steps">Watch the steps:</label>
+      <input type="checkbox" id="see_steps" checked />
+    </div>
+    <input type="file" id="file" />
+    <p>This page may crash. Please reload if that happens!</p>
+    <p>
+      Less line thickness captures more details but requires significantly more
+      number of lines! Please adjust values as per needs! For detail heavy
+      images try setting the line thickness to 0.1 and atleast above 10000
+      lines.
+    </p>
+    <p>
+      Generating string art is computationally expensive, so it may not work on
+      mobile devices or very very old devices :(
+    </p>
+    <button id="generate">Genarate</button>
+    <p id="status"></p>
+    <div>
+      <canvas id="canvas"></canvas>
+    </div>
+    <div>
+      <canvas id="canvas2"></canvas>
+    </div>
+  </body>
+  <script src="main.js"></script>
+</html>

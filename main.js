@@ -8,12 +8,12 @@ var ctx2 = canvas2.getContext("2d");
 let CANVAS_WIDTH = 800;
 let CANVAS_HEIGHT = 800;
 let NUMBER_OF_PINS = 288;
-let NUMBER_OF_LINES = 6000;
+let NUMBER_OF_LINES = 7000;
 let LINE_COLOR = 0;
 let PINS_BUFFER = 0;
 let DRAW_INTERVAL = 100;
 let MIN_PIN_GAP = 0;
-let LINE_WEIGHT = 0.2;
+let LINE_WEIGHT = 0.1;
 let LIGHTENING_FACTOR = 1.4;
 let IMAGE_NAME = "";
 let SEE_ANIMATION = true;
@@ -97,6 +97,7 @@ document.getElementById("number_of_lines").addEventListener("input", (e) => {
 
 document.getElementById("line_weight").addEventListener("input", (e) => {
   LINE_WEIGHT = e.target.value;
+  LIGHTENING_FACTOR = 1.4;
 });
 
 document.getElementById("number_of_pins").addEventListener("input", (e) => {
@@ -346,6 +347,7 @@ const solve = (a, b) => {
       currPin = bestPin;
     }
   }
+
   console.log(solution);
 };
 const getError = (line) => {
